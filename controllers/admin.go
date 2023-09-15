@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	"time"
 
 	"github.com/abdulmanafc2001/First-Project-Ecommerce/database"
 	helper "github.com/abdulmanafc2001/First-Project-Ecommerce/helpers"
@@ -30,10 +29,6 @@ type userDetail struct {
 // @Failure 500 {json} ErrorResponse
 // @Router /admin/login [post]
 func AdminLogin(c *gin.Context) {
-	go func(){
-		<-c.Done()
-	}()
-	time.Sleep(time.Second * 10)
 	var userCredentials userDetail
 	if err := c.Bind(&userCredentials); err != nil {
 		fmt.Println(err)
