@@ -262,7 +262,7 @@ func Login(c *gin.Context) {
 	}
 	//set jwt in browser
 	c.SetSameSite(http.SameSiteLaxMode)
-	c.SetCookie("jwt_token", token, 3600*24, "", "", true, true)
+	c.SetCookie("jwt_token", token, 3600*24, "", "", false, true)
 	//success message
 	c.JSON(200, gin.H{
 		"message": user.User_Name + " successfully logged",

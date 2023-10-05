@@ -14,7 +14,13 @@ var DB *gorm.DB
 
 func ConnectToDatabase() {
 	var err error
-	dns := os.Getenv("DB_URL")
+	host := os.Getenv("DB_HOST")
+	user := os.Getenv("DB_USER")
+	password := os.Getenv("DB_PASSWORD")
+	dbname := os.Getenv("DB_NAME")
+	port := os.Getenv("DB_PORT")
+
+	dns := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s",host,user,password,dbname,port)
 	DB, err = gorm.Open(postgres.Open(dns), &gorm.Config{})
 	if err != nil {
 		log.Panic("Failed to connect to database")
