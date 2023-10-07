@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  postgresDB:
+    container_name: psql
+    image: postgres:16
+    environment:
+      - POSTGRES_USER=manaf
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=mydb
+    volumes:
+      - data:/var/lib/ecom
+    ports:
+      - "5433:5432"
+
+
+  api:
+    build: .
+    depends_on:
+      - postgresDB
+    restart: on-failure
+    environment:
+      - DB_HOST=postgresDB
+      - DB_PORT=5432
+    ports:
+      - "3000:3000"
+
+
+
+volumes:
+  data:
