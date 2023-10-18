@@ -14,16 +14,16 @@ var DB *gorm.DB
 
 func ConnectToDatabase() {
 	var err error
-	host := os.Getenv("DB_HOST")
-	user := os.Getenv("DB_USER")
-	password := os.Getenv("DB_PASSWORD")
-	dbname := os.Getenv("DB_NAME")
-	port := os.Getenv("DB_PORT")
+	// host := os.Getenv("DB_HOST")
+	// user := os.Getenv("DB_USER")
+	// password := os.Getenv("DB_PASSWORD")
+	// dbname := os.Getenv("DB_NAME")
+	// port := os.Getenv("DB_PORT")
 
-	// dsn := os.Getenv("DB_URL")
-	// fmt.Println(dsn)
+	// // dsn := os.Getenv("DB_URL")
+	// // fmt.Println(dsn)
 
-	dns := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s", host, user, password, dbname, port)
+	dns := os.Getenv("DB_URL")
 	fmt.Println(dns)
 	DB, err = gorm.Open(postgres.Open(dns), &gorm.Config{})
 	if err != nil {
