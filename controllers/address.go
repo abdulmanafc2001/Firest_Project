@@ -38,6 +38,7 @@ func AddAddress(c *gin.Context) {
 		})
 		return
 	}
+
 	err := database.DB.Create(&models.Address{
 		Building_Name: address.Building_Name,
 		City:          address.City,
