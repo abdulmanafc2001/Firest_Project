@@ -1,6 +1,8 @@
 # build stage
 FROM golang:1.20.10-alpine3.17 AS builder
 WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
 ADD . .
 RUN go build -o main main.go
 
